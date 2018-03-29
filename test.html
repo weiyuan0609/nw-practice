@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="width: 100%; height: 100%;">
+    <a href="./index.html"><button>点击跳转index</button></a>
+    <a href="./test2.html"><button>点击跳转test2</button></a>
+    <p>右键显示上下文菜单</p>
+    <script>
+        // 创建一个空菜单
+        var menu = new nw.Menu();
+
+        // 添加菜单项
+        menu.append(new nw.MenuItem({
+        label: '项 A',
+        click: function(){
+            alert('You have clicked at "项 A"');
+        }
+        }));
+        menu.append(new nw.MenuItem({ label: '项 B' }));
+        menu.append(new nw.MenuItem({ type: 'separator' }));
+        menu.append(new nw.MenuItem({ label: '项 C' }));
+
+        // 监听事件
+        document.body.addEventListener('contextmenu', function(ev) {
+        // 阻止显示默认菜单
+        ev.preventDefault();
+        // 点击处弹出定义的菜单对象
+        menu.popup(ev.x, ev.y);
+
+        return false;
+        }, false);
+    </script>
+</body>
+</html>
